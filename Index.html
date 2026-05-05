@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nicole Bisby · Protecting Families · Building Legacy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #f5f0eb;
+      --sand:    #e8ddd2;
+      --sage:    #7d9b7a;
+      --sage-light: #a8bf9e;
+      --terra:   #b5713a;
+      --terra-light: #c98a56;
+      --brown:   #6b4c30;
+      --text:    #3d2f23;
+      --text-light: #7a6555;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── Texture overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      padding: 80px 60px 80px 8vw;
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-right {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    /* Decorative circle behind form */
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, var(--sand) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Botanical SVG decoration */
+    .botanical {
+      position: absolute;
+      right: -30px; bottom: -20px;
+      width: 320px;
+      opacity: 0.18;
+      z-index: 1;
+      animation: sway 8s ease-in-out infinite;
+    }
+    .botanical-top {
+      position: absolute;
+      left: -60px; top: -40px;
+      width: 240px;
+      opacity: 0.12;
+      z-index: 1;
+      transform: rotate(180deg);
+      animation: sway 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(3deg); }
+    }
+    .botanical-top { animation: swayRev 10s ease-in-out infinite; }
+    @keyframes swayRev {
+      0%, 100% { transform: rotate(180deg); }
+      50% { transform: rotate(177deg); }
+    }
+
+    .eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--sage);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--terra);
+    }
+
+    .subhead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-style: italic;
+      color: var(--text-light);
+      margin: 18px 0 36px;
+      line-height: 1.6;
+      max-width: 420px;
+    }
+
+    .trust-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text-light);
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+      flex-shrink: 0;
+    }
+
+    .name-block {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .monogram {
+      width: 48px; height: 48px;
+      border: 1.5px solid var(--sage);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--sage);
+    }
+    .name-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      color: var(--text);
+    }
+    .name-text span {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-top: 2px;
+    }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 24px;
+      padding: 44px 40px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 60px rgba(107,76,48,0.10), 0 2px 12px rgba(107,76,48,0.06);
+      position: relative;
+      z-index: 3;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    .form-card-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 8px;
+    }
+    .form-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .form-card p {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+    .field label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 6px;
+    }
+    .field input, .field select {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1px solid var(--sand);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.8);
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      -webkit-appearance: none;
+    }
+    .field input:focus, .field select:focus {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(125,155,122,0.15);
+    }
+    .field select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a6555' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+
+    .cta-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--terra) 0%, var(--terra-light) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 8px;
+      box-shadow: 0 4px 20px rgba(181,113,58,0.35);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(181,113,58,0.45);
+    }
+    .cta-btn:active { transform: translateY(0); }
+
+    .privacy-note {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 14px;
+      opacity: 0.75;
+    }
+
+    /* ── SUCCESS STATE ── */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .success-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--sage), var(--sage-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 24px;
+    }
+    .success-state h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .success-state p {
+      font-size: 13.5px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* ── SOCIAL PROOF STRIP ── */
+    .strip {
+      background: var(--sand);
+      padding: 20px 8vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+    .strip-item {
+      text-align: center;
+    }
+    .strip-item strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--terra);
+    }
+    .strip-item span {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .strip-divider {
+      width: 1px; height: 36px;
+      background: rgba(107,76,48,0.2);
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      padding: 90px 8vw;
+      position: relative;
+      z-index: 2;
+    }
+    .section-label {
+      text-align: center;
+      font-size: 10.5px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 14px;
+    }
+    .how h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      text-align: center;
+      color: var(--text);
+      margin-bottom: 56px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .step {
+      text-align: center;
+      padding: 36px 28px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,255,255,0.85);
+      border-radius: 18px;
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .step:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(107,76,48,0.10);
+    }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--sage-light);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+    .step h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .step p {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* ── WHY SECTION ── */
+    .why {
+      padding: 70px 8vw 90px;
+      background: linear-gradient(to bottom, transparent, var(--sand) 40%, var(--sand) 60%, transparent);
+      position: relative;
+      z-index: 2;
+    }
+    .why-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .why-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .why-text h2 em { color: var(--terra); font-style: italic; }
+    .why-text p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .why-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .why-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13.5px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+    .why-list li::before {
+      content: '✦';
+      color: var(--terra);
+      font-size: 10px;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    /* ── BOTTOM CTA ── */
+    .bottom-cta {
+      text-align: center;
+      padding: 90px 8vw;
+      position: relative;
+      z-index: 2;
+    }
+    .bottom-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .bottom-cta h2 em { color: var(--terra); font-style: italic; }
+    .bottom-cta p {
+      font-size: 14px;
+      color: var(--text-light);
+      max-width: 460px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .cta-anchor {
+      display: inline-block;
+      padding: 16px 44px;
+      background: linear-gradient(135deg, var(--terra), var(--terra-light));
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-family: 'Jost', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      box-shadow: 0 6px 24px rgba(181,113,58,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-anchor:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(181,113,58,0.45);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--sand);
+      padding: 28px 8vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+    footer .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-light);
+    }
+    footer .footer-tag {
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    footer .footer-legal {
+      font-size: 10px;
+      color: var(--text-light);
+      opacity: 0.6;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-left { padding: 60px 6vw 30px; }
+      .hero-right { height: auto; padding: 0 6vw 60px; }
+      .hero-right::before { display: none; }
+      .steps { grid-template-columns: 1fr; }
+      .why-inner { grid-template-columns: 1fr; }
+      .strip { gap: 24px; }
+      .strip-divider { display: none; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero" id="top">
+  <!-- Botanical SVG decorations -->
+  <svg class="botanical-top" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 280 C80 220 40 180 20 100 C10 60 30 20 60 10 C90 0 130 30 140 80 C150 120 130 160 110 200 C95 230 100 260 100 280Z" fill="#7d9b7a"/>
+    <path d="M100 200 C120 170 160 150 180 120 C190 100 185 70 165 60 C145 50 120 70 110 100 C100 130 105 165 100 200Z" fill="#a8bf9e"/>
+    <ellipse cx="70" cy="140" rx="30" ry="15" transform="rotate(-30 70 140)" fill="#7d9b7a" opacity="0.5"/>
+    <ellipse cx="130" cy="160" rx="28" ry="13" transform="rotate(20 130 160)" fill="#a8bf9e" opacity="0.5"/>
+  </svg>
+
+  <div class="hero-left">
+    <div class="eyebrow">Licensed Life Insurance Agent</div>
+    <h1>Your family<br/>deserves a<br/><em>safety net.</em></h1>
+    <p class="subhead">Get a personalized life insurance quote in under 2 minutes — no pressure, no jargon, just clarity.</p>
+
+    <div class="trust-badges">
+      <div class="badge"><div class="badge-dot"></div>Free, no-obligation quote</div>
+      <div class="badge"><div class="badge-dot"></div>Licensed agent — real person, not a call center</div>
+      <div class="badge"><div class="badge-dot"></div>Trusted with Experior Financial Group</div>
+    </div>
+
+    <div class="name-block">
+      <div class="monogram">NB</div>
+      <div class="name-text">
+        Nicole Bisby
+        <span>Protecting Families · Building Legacy</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <svg class="botanical" viewBox="0 0 250 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M125 330 C105 270 65 220 30 150 C10 100 25 40 65 20 C105 0 150 35 160 90 C170 140 145 195 125 240 C110 270 125 305 125 330Z" fill="#7d9b7a"/>
+      <path d="M125 240 C150 205 200 185 220 150 C235 120 225 80 200 65 C175 50 145 70 135 105 C120 140 125 195 125 240Z" fill="#a8bf9e"/>
+      <ellipse cx="80" cy="170" rx="38" ry="18" transform="rotate(-35 80 170)" fill="#7d9b7a" opacity="0.45"/>
+      <ellipse cx="165" cy="190" rx="35" ry="16" transform="rotate(25 165 190)" fill="#a8bf9e" opacity="0.45"/>
+      <ellipse cx="55" cy="220" rx="28" ry="12" transform="rotate(-20 55 220)" fill="#7d9b7a" opacity="0.35"/>
+      <path d="M125 330 C115 300 90 280 70 260 C55 245 55 220 70 210" stroke="#b5713a" stroke-width="1.5" fill="none" opacity="0.3"/>
+    </svg>
+
+    <div class="form-card" id="quote-form-section">
+      <div class="form-card-eyebrow">Free · Takes 2 Minutes</div>
+      <h2>Get Your<br/>Free Quote</h2>
+      <p>Tell me a little about yourself and I'll reach out with tailored options for your family.</p>
+
+      <div id="form-fields">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" id="fname" placeholder="Jane Smith" />
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="femail" placeholder="jane@email.com" />
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" id="fphone" placeholder="(555) 000-0000" />
+        </div>
+        <div class="field">
+          <label>Coverage Interest</label>
+          <select id="fcoverage">
+            <option value="" disabled selected>Select one…</option>
+            <option>Term Life Insurance</option>
+            <option>Whole Life Insurance</option>
+            <option>Family Coverage</option>
+            <option>Not sure — help me decide</option>
+          </select>
+        </div>
+
+        <button class="cta-btn" onclick="handleSubmit()">Get My Free Quote →</button>
+        <p class="privacy-note">🔒 Your info is private. No spam, ever.</p>
+      </div>
+
+      <div class="success-state" id="success">
+        <div class="success-icon">✓</div>
+        <h3>You're all set!</h3>
+        <p>Thank you! Nicole will be in touch within 24 hours with your personalized quote. Check your email for a confirmation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOCIAL PROOF STRIP ── -->
+<div class="strip">
+  <div class="strip-item">
+    <strong>2 min</strong>
+    <span>to get a quote</span>
+  </div>
+  <div class="strip-divider"></div>
+  <div class="strip-item">
+    <strong>$0</strong>
+    <span>cost to apply</span>
+  </div>
+  <div class="strip-divider"></div>
+  <div class="strip-item">
+    <strong>100%</strong>
+    <span>no-pressure process</span>
+  </div>
+  <div class="strip-divider"></div>
+  <div class="strip-item">
+    <strong>Licensed</strong>
+    <span>professional agent</span>
+  </div>
+</div>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how">
+  <div class="section-label">Simple Process</div>
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Fill Out the Form</h3>
+      <p>Share a few details about yourself — takes less than 2 minutes.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Nicole Reaches Out</h3>
+      <p>I personally review your info and reach out within 24 hours with tailored options.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Your Family Is Protected</h3>
+      <p>Choose a plan that fits your life and budget. No pressure — just peace of mind.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY SECTION ── -->
+<section class="why">
+  <div class="why-inner">
+    <div class="why-text">
+      <h2>Why families<br/>choose to work<br/>with <em>Nicole</em></h2>
+      <p>I'm not a call center. I'm a real person who takes the time to understand your family's unique situation and find coverage that actually makes sense.</p>
+    </div>
+    <ul class="why-list">
+      <li>Personal, one-on-one guidance through every step</li>
+      <li>Access to multiple insurance carriers for the best rate</li>
+      <li>No pushy sales tactics — ever</li>
+      <li>Licensed and backed by Experior Financial Group</li>
+      <li>Available when you need answers, not just at signup</li>
+      <li>Specialized in protecting families just like yours</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── BOTTOM CTA ── -->
+<section class="bottom-cta">
+  <h2>Ready to protect<br/>what matters <em>most?</em></h2>
+  <p>It starts with one simple step. Fill out the form above and I'll take care of the rest.</p>
+  <a href="#top" class="cta-anchor">Get My Free Quote →</a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-name">Nicole Bisby</div>
+  <div class="footer-tag">Protecting Families · Building Legacy</div>
+  <div class="footer-legal">Licensed Life Insurance Agent · Experior Financial Group</div>
+</footer>
+
+<script>
+  function handleSubmit() {
+    const name     = document.getElementById('fname').value.trim();
+    const email    = document.getElementById('femail').value.trim();
+    const phone    = document.getElementById('fphone').value.trim();
+    const coverage = document.getElementById('fcoverage').value;
+
+    if (!name || !email || !phone || !coverage) {
+      alert('Please fill in all fields so Nicole can reach you.');
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // Hide form, show success
+    document.getElementById('form-fields').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+
+    // In production: replace with fetch() to your form backend (Formspree, Mailchimp, etc.)
+    console.log('Lead captured:', { name, email, phone, coverage });
+  }
+</script>
+
+</body>
+</html>
